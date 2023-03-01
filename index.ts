@@ -21,6 +21,7 @@ const metricsServer = new kubernetes.helm.v3.Release("metrics-server", {
     repositoryOpts: {
         repo: "https://kubernetes-sigs.github.io/metrics-server",
     },
+    name: "metrics-server"
 });
 
 // Export some values for use elsewhere
