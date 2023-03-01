@@ -14,6 +14,6 @@ jobs:
       - uses: pulumi/actions@v3
         with:
           command: preview
-          stack-name: chase-swanson/rasp-pi-k8s-iac # When using an individual account, only use stack-name.
+          stack-name: rasp-pi-k8s-iac # When using an individual account, only use stack-name.
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
