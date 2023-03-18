@@ -21,7 +21,16 @@ const metricsServer = new kubernetes.helm.v3.Release("metrics-server", {
     repositoryOpts: {
         repo: "https://kubernetes-sigs.github.io/metrics-server",
     },
-    name: "metrics-server"
+    name: "metrics-server",
+    values: {
+        defaultArgs: [
+            "--cert-dir=/tmp",
+            "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname",
+            "--kubelet-use-node-status-port",
+            "--metric-resolution=15s",
+            "--kubelet-insecure-tls"
+        ]
+    }
 });
 
 // Export some values for use elsewhere
