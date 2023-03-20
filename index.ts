@@ -14,7 +14,6 @@ const monitoringNamespace = new kubernetes.core.v1.Namespace("monitoring", {
     }
 });
 
-// Use Helm to install the Nginx ingress controller
 const metricsServer = new kubernetes.helm.v3.Release("metrics-server", {
     chart: "metrics-server",
     namespace: monitoringNamespace.metadata.name,
@@ -33,5 +32,18 @@ const metricsServer = new kubernetes.helm.v3.Release("metrics-server", {
     }
 });
 
+const prometheusStack = new kubernetes.helm.v3.Release("prometheus-stack", {
+    chart: "kube-prometheus-stack",
+    namespace: monitoringNamespace.metadata.name,
+    repositoryOpts: {
+        repo: "https://prometheus-community.github.io/helm-charts",
+    },
+    name: "kube-prometheus-stack",
+    values: {
+        namespaceOverride: metricsServer.namespace
+    }
+});
+
 // Export some values for use elsewhere
-export const name = metricsServer.name;
+export const metricsServerName = metricsServer.name;
+export const prometheusStackName = prometheusStack.name;
