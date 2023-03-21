@@ -1,5 +1,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
+import { readFileSync } from "fs";
 
 const config = new pulumi.Config();
 const k8sNamespace = config.get("k8sNamespace") || "default";
@@ -38,7 +39,7 @@ const prometheusStack = new kubernetes.helm.v3.Release("prometheus-stack", {
     repositoryOpts: {
         repo: "https://prometheus-community.github.io/helm-charts",
     },
-    name: "kube-prometheus-stack",
+    name: "prom-stack",
     values: {
         namespaceOverride: metricsServer.namespace
     }
@@ -47,3 +48,4 @@ const prometheusStack = new kubernetes.helm.v3.Release("prometheus-stack", {
 // Export some values for use elsewhere
 export const metricsServerName = metricsServer.name;
 export const prometheusStackName = prometheusStack.name;
+export const readme = readFileSync("./Pulumi.README.md").toString();
