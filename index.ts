@@ -39,7 +39,7 @@ const prometheusStack = new kubernetes.helm.v3.Release("prometheus-stack", {
     repositoryOpts: {
         repo: "https://prometheus-community.github.io/helm-charts",
     },
-    name: "prom-stack",
+    name: "kube-prometheus-stack",
     values: {
         namespaceOverride: metricsServer.namespace
     }
