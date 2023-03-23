@@ -33,6 +33,14 @@ const metricsServer = new kubernetes.helm.v3.Release("metrics-server", {
     }
 });
 
+const metalLb = new kubernetes.helm.v3.Release("metallb", {
+    chart: "metallb",
+    repositoryOpts: {
+        repo: "https://charts.bitnami.com/bitnami",
+    },
+    name: "metallb",
+});
+
 const prometheusStack = new kubernetes.helm.v3.Release("prometheus-stack", {
     chart: "kube-prometheus-stack",
     namespace: monitoringNamespace.metadata.name,
