@@ -1,3 +1,0 @@
-name: rasp-pi-k8s-iac
-runtime: nodejs
-description: A TypeScript program to deploy a Helm chart onto a Kubernetes cluster
