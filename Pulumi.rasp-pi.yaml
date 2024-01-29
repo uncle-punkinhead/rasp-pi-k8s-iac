@@ -1,0 +1,2 @@
+config:
+  rasp-pi-k8s-iac:k8sNamespace: kube-prometheus-stack
