@@ -1,2 +1,2 @@
-config:
-  rasp-pi-k8s-iac:k8sNamespace: kube-prometheus-stack
+environment:
+  - rasp-pi-k8s-iac-rasp-pi

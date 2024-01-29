@@ -27,7 +27,7 @@ return await Deployment.RunAsync(() =>
         {
             Repo = "https://prometheus-community.github.io/helm-charts",
         },
-        SkipCrds = true,
+        SkipCrds = false,
 //        Values = new Dictionary<string, object>
 //        {
 //            ["controller"] = new Dictionary<string, object>
